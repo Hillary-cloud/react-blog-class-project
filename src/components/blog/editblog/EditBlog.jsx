@@ -55,11 +55,11 @@ const EditBlog = () => {
     if (form.image) {
       const formData = new FormData();
       formData.append("file", form.image);
-      formData.append("upload_preset", "blog_images_upload"); // Replace with your Cloudinary upload preset
+      formData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_PRESET); // Replace with your Cloudinary upload preset
 
       try {
         const response = await axios.post(
-          "https://api.cloudinary.com/v1_1/dn66uj2i1/image/upload", // Replace with your Cloudinary URL
+          `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_NAME}/image/upload`, // Replace with your Cloudinary URL
           formData
         );
         imageUrl = response.data.secure_url; // Update the image URL

@@ -36,11 +36,11 @@ const CreateBlog = () => {
       // Step 1: Upload the image to Cloudinary
       const formData = new FormData();
       formData.append("file", form.image);
-      formData.append("upload_preset", "blog_images_upload"); // Replace with your preset
-      formData.append("cloud_name", "dn66uj2i1"); // Replace with your Cloudinary cloud name
+      formData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_PRESET); // Replace with your preset
+      formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_NAME); // Replace with your Cloudinary cloud name
 
       const cloudinaryResponse = await axios.post(
-        "https://api.cloudinary.com/v1_1/dn66uj2i1/image/upload", // Replace with your Cloudinary API URL
+        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_NAME}/image/upload`, // Replace with your Cloudinary API URL
         formData
       );
 
